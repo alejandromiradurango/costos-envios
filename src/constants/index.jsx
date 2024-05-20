@@ -1,22 +1,22 @@
 export const inputs = [
   {
     label: 'Alto (cm)',
-    value: 0,
+    value: '',
     id: 'alto'
   },
   {
     label: 'Largo (cm)',
-    value: 0,
+    value: '',
     id: 'largo'
   },
   {
     label: 'Ancho (cm)',
-    value: 0,
+    value: '',
     id: 'ancho'
   },
   {
     label: 'Peso (kg)',
-    value: 0,
+    value: '',
     id: 'peso'
   }
 ]
