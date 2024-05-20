@@ -6,6 +6,9 @@ import { calcularCostoEnvio } from '../utils'
 const VersionOne = () => {
   const { inputValues, handleChange } = useInputs(inputs)
 
+  const customers = [0, 30, 50, 70, 100]
+
+  const [customerSelected, setCustomerSelected] = useState(0)
   const [total, setTotal] = useState(null)
 
   const handleSubmit = (e) => {
@@ -19,6 +22,13 @@ const VersionOne = () => {
   }
   return (
         <div>
+            <ul className='flex items-center gap-2 mb-6'>
+                {customers.map(customer => (
+                    <li key={customer}>
+                        <button onClick={() => setCustomerSelected(customer)} className={`p-2 border rounded-md border-neutral-600 transition-all ${customerSelected === customer ? 'bg-neutral-600 text-white' : 'hover:bg-neutral-400'}`}>Cliente {customer}</button>
+                    </li>
+                ))}
+            </ul>
             <div className="max-w-md mx-auto space-y-6 p-6 bg-white rounded-lg shadow-md border">
                 <div className="space-y-2">
                     <h1 className="text-2xl font-bold">Calculadora de Costos de Envío</h1>
@@ -73,7 +83,7 @@ const VersionOne = () => {
                 {total && (
                     <div className="bg-gray-100 border p-4 rounded-lg">
                         <h2 className="text-lg font-bold">Estimación del Costo de Envío</h2>
-                        <p className="text-4xl font-bold text-primary">{!isNaN(total) && '$'}{total}</p>
+                        <p className="text-4xl font-bold text-primary">{!isNaN(total) && '$'}{(total + (total * (customerSelected / 100))).toFixed(2)}</p>
                     </div>
                 )}
             </div>
