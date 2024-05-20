@@ -15,7 +15,7 @@ function obtenerPrecio (tipo, peso) {
         return precios[tipo][pesosDisponibles[i]]
       }
     }
-    return 'No hay un peso disponible mayor o igual al peso dado'
+    return `Actualmente no tenemos disponibilidad para enviar un paquete de ${peso} kg`
   } else {
     return 'Tipo no válido'
   }
@@ -37,7 +37,7 @@ export function calcularCostoEnvio (alto, ancho, largo, peso, zona) {
 
 export const sendData = async ({ data }) => {
   try {
-    const response = await fetch('https://eoujk0k4jyl10od.m.pipedream.net', {
+    const response = await fetch('https://eo6soera7rt5un0.m.pipedream.net', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

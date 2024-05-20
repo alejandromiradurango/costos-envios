@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { contact, countries, inputs } from '../constants'
-import { calcularCostoEnvio } from '../utils'
+import { calcularCostoEnvio, sendData } from '../utils'
 import { useInputs } from '../hooks'
 
 const VersionTwo = () => {
@@ -39,7 +39,7 @@ const VersionTwo = () => {
       pes: inputValues.peso
     }
 
-    console.log(body)
+    sendData({ data: body })
   }
   return (
         <div>
