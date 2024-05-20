@@ -73,7 +73,7 @@ const VersionOne = () => {
                 {total && (
                     <div className="bg-gray-100 border p-4 rounded-lg">
                         <h2 className="text-lg font-bold">Estimación del Costo de Envío</h2>
-                        <p className="text-4xl font-bold text-primary">${total}</p>
+                        <p className="text-4xl font-bold text-primary">{!isNaN(total) && '$'}{total}</p>
                     </div>
                 )}
             </div>

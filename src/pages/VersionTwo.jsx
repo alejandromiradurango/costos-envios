@@ -32,7 +32,11 @@ const VersionTwo = () => {
       name,
       email,
       phone,
-      total
+      total,
+      alto: inputValues.alto,
+      ancho: inputValues.ancho,
+      largo: inputValues.largo,
+      pes: inputValues.peso
     }
 
     console.log(body)
@@ -105,7 +109,7 @@ const VersionTwo = () => {
                                 type="text"
                                 id={id}
                                 value={inputValuesContact[id]}
-                                onChange={(e) => handleChangeContact(id, Number(e.target.value))}
+                                onChange={(e) => handleChangeContact(id, e.target.value)}
                                 placeholder={`Ingresa tu ${label.toLowerCase()}`}
                                 required
                             />
