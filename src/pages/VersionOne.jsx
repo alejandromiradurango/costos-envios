@@ -16,7 +16,7 @@ const VersionOne = () => {
 
     const country = e.target.destination.value
 
-    const zone = countries.find(({ name }) => country).zone
+    const zone = countries.find(({ name }) => name === country).zone
 
     const totalShip = calcularCostoEnvio(inputValues.alto, inputValues.ancho, inputValues.largo, inputValues.peso, zone)
 
