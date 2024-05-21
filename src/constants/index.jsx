@@ -28,6 +28,11 @@ export const contact = [
     id: 'name'
   },
   {
+    label: 'Apellido',
+    value: '',
+    id: 'lastName'
+  },
+  {
     label: 'Correo',
     value: '',
     id: 'email'

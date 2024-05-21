@@ -26,10 +26,11 @@ const VersionTwo = () => {
   const sendInfo = (e) => {
     e.preventDefault()
 
-    const { name, email, phone } = inputValuesContact
+    const { name, lastName, email, phone } = inputValuesContact
 
     const body = {
       name,
+      lastName,
       email,
       phone,
       total,
@@ -40,6 +41,8 @@ const VersionTwo = () => {
     }
 
     sendData({ data: body })
+
+    setStep(3)
   }
   return (
         <div>
@@ -119,9 +122,11 @@ const VersionTwo = () => {
                         Confirmar
                     </button>
                 </form>
-                <div className="hidden bg-gray-100 border p-4 rounded-lg">
-                    <h2 className="text-lg font-bold">Estimación del Costo de Envío</h2>
-                    <p className="text-4xl font-bold text-primary">$25.99</p>
+                <div className={`${step === 3 ? 'block' : 'hidden'} space-y-4`}>
+                    <div className="bg-gray-100 border p-4 rounded-lg">
+                        <h2 className="text-2xl mb-3 font-bold">Gracias por contactarnos!</h2>
+                        <p className="text-md text-neutral-600">Te enviaremos a tu correo los datos de la cotización</p>
+                    </div>
                 </div>
             </div>
         </div>
