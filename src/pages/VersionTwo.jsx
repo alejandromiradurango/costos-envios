@@ -5,6 +5,7 @@ import { useInputs } from '../hooks'
 
 const VersionTwo = () => {
   const [step, setStep] = useState(1)
+  const [country, setCountry] = useState('')
 
   const { inputValues, handleChange } = useInputs(inputs)
   const { inputValues: inputValuesContact, handleChange: handleChangeContact } = useInputs(contact)
@@ -14,7 +15,11 @@ const VersionTwo = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const zone = e.target.destination.value
+    const country = e.target.destination.value
+
+    setCountry(country)
+
+    const zone = countries.find(({ name }) => country).zone
 
     const totalShip = calcularCostoEnvio(inputValues.alto, inputValues.ancho, inputValues.largo, inputValues.peso, zone)
 
@@ -37,7 +42,8 @@ const VersionTwo = () => {
       alto: inputValues.alto,
       ancho: inputValues.ancho,
       largo: inputValues.largo,
-      pes: inputValues.peso
+      peso: inputValues.peso,
+      country
     }
 
     sendData({ data: body })
@@ -47,7 +53,7 @@ const VersionTwo = () => {
   return (
         <div>
             <div className="max-w-md mx-auto space-y-6 p-6 bg-white rounded-lg shadow-md border">
-                <div className="space-y-2">
+                <div className={`space-y-2 ${step === 3 ? 'hidden' : 'block'}`}>
                     <h1 className="text-2xl font-bold">Calculadora de Costos de Envío</h1>
                     <p className="text-gray-500 dark:text-gray-400">
                         Ingresa los detalles de tu envío y obtén una estimación del costo.

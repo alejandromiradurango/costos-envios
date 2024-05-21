@@ -14,7 +14,9 @@ const VersionOne = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const zone = e.target.destination.value
+    const country = e.target.destination.value
+
+    const zone = countries.find(({ name }) => country).zone
 
     const totalShip = calcularCostoEnvio(inputValues.alto, inputValues.ancho, inputValues.largo, inputValues.peso, zone)
 
@@ -51,7 +53,7 @@ const VersionOne = () => {
                         >
                             <option value="">Ingresa el país de destino</option>
                             {countries.map(({ name, zone }) => (
-                                <option value={zone} key={name}>{name}</option>
+                                <option value={name} key={name}>{name}</option>
                             ))}
                         </select>
                     </div>
