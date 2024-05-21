@@ -75,7 +75,7 @@ const VersionTwo = () => {
                         >
                             <option value="">Ingresa el país de destino</option>
                             {countries.map(({ name, zone }) => (
-                                <option value={zone} key={name}>{name}</option>
+                                <option value={name} key={name}>{name}</option>
                             ))}
                         </select>
                     </div>
