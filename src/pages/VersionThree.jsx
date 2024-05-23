@@ -64,7 +64,7 @@ const VersionThree = () => {
   const maxKey = Math.max(...Object.keys(precios[zoneSelected] || 'A').map(Number))
 
   useEffect(() => {
-    if (products.length > 1 && formRef.current) {
+    if (products.length > 0 && formRef.current) {
       const submitEvent = new Event('submit', { bubbles: true, cancelable: true })
       formRef.current.dispatchEvent(submitEvent)
     }
