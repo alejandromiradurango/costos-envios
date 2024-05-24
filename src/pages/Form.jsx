@@ -68,9 +68,6 @@ const Form = () => {
       }
     }
 
-    console.log(dataToSubmit)
-
-    // Aquí puedes enviar dataToSubmit a tu endpoint
     fetch('https://eocpv2cu9zx3uq2.m.pipedream.net', {
       method: 'POST',
       headers: {
