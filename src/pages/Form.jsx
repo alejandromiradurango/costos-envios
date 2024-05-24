@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { Fieldset, Input, Select } from '../components'
+import { provincias } from '../constants'
 
 const Form = () => {
   const [anotherDirection, setAnotherDirection] = useState(false)
@@ -86,159 +88,69 @@ const Form = () => {
   }
 
   return (
-        <form className="mx-auto max-w-6xl space-y-6 border border-neutral-300 rounded-md p-6" onSubmit={handleSubmit}>
+        <form className="mx-auto max-w-2xl space-y-6 border border-blue-800/40 rounded-md p-6" onSubmit={handleSubmit}>
             <div className="space-y-2 text-center">
-                <h1 className="text-3xl font-bold">{!formSubmitted ? 'Crea tu cuenta' : '¡Gracias!'}</h1>
+                <h1 className="text-3xl font-bold text-blue-800">{!formSubmitted ? 'Crea tu cuenta' : '¡Gracias!'}</h1>
             </div>
             {!formSubmitted
               ? (
-                <>
-                    <div className="space-y-5">
-                        <div className="flex gap-3 flex-col lg:flex-row items-start">
-                            <fieldset className="space-y-4 border border-neutral-300 py-4 px-8 rounded-md">
-                                <legend className='font-bold text-lg px-4'>Información personal</legend>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="nombre">Nombre</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="nombre" placeholder="Ingresa tu nombre" required value={formData.nombre} onChange={handleChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="apellido">Apellido</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="apellido" placeholder="Ingresa tu apellido" required value={formData.apellido} onChange={handleChange} />
-                                    </div>
+                    <>
+                        <div className="space-y-8">
+                            <Fieldset legend='Información personal'>
+                                <Input label='Nombre' id='nombre' placeholder='Ingresa tu nombre' value={formData.nombre} handleChange={handleChange} />
+                                <Input label='Apellido' id='apellido' placeholder='Ingresa tu apellido' value={formData.apellido} handleChange={handleChange} />
+                                <Input label='Razón social' id='razonSocial' placeholder='Ingresa tu razón social' value={formData.razonSocial} handleChange={handleChange} />
+                                <Select label='Condición IVA' id='condicionIva' value={formData.condicionIva} handleChange={handleChange} options={['Responsable Inscripto', 'Monotributo', 'Consumidor Final']} required={anotherDirection} />
+                                <Input label='CUIT' id='cuit' placeholder='Ingresa tu CUIT' value={formData.cuit} handleChange={handleChange} />
+                                <Input label='Email' id='email' placeholder='Ingresa tu email' value={formData.email} handleChange={handleChange} type='email' />
+                                <Input label='Teléfono' id='telefono' placeholder='Ingresa tu teléfono' value={formData.telefono} handleChange={handleChange} />
+                            </Fieldset>
+                            <Fieldset legend='Dirección'>
+                                <Input label='Número' id='numero' placeholder='Ingresa tu número' value={formData.numero} handleChange={handleChange} />
+                                <Input label='Piso' id='piso' placeholder='Ingresa tu piso' value={formData.piso} handleChange={handleChange} />
+                                <Input label='Departamento' id='depto' placeholder='Ingresa tu departamento' value={formData.depto} handleChange={handleChange} />
+                                <Input label='Código postal' id='codigoPostal' placeholder='Ingresa tu código postal' value={formData.codigoPostal} handleChange={handleChange} />
+                                <Input label='Localidad' id='localidad' placeholder='Ingresa tu localidad' value={formData.localidad} handleChange={handleChange} />
+                                <Select label='Provincia' id='provincia' value={formData.provincia} handleChange={handleChange} options={provincias} />
+                            </Fieldset>
+                            <div className="space-y-2">
+                                <div className="flex items-center space-x-2">
+                                    <input
+                                        type="checkbox"
+                                        id="another-direction"
+                                        className="peer h-4 w-4 shrink-0 rounded-sm border border-neutral-300 accent-blue-800 shadow focus:ring-2 focus:ring-green-600/50 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        checked={anotherDirection}
+                                        onChange={() => setAnotherDirection(!anotherDirection)}
+                                    />
+                                    <label
+                                        htmlFor="another-direction"
+                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    >
+                                        ¿Deseas recibir la factura en una dirección diferente?
+                                    </label>
                                 </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="razonSocial">Razón social</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="razonSocial" placeholder="Ingresa tu razón social" required value={formData.razonSocial} onChange={handleChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="condicionIva">Condición IVA</label>
-                                        <select className="bg-white flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="condicionIva" required value={formData.condicionIva} onChange={handleChange}>
-                                            <option value="">Ingresa tu condición</option>
-                                            <option value="Responsable Inscripto">Responsable Inscripto</option>
-                                            <option value="Monotributo">Monotributo</option>
-                                            <option value="Consumidor Final">Consumidor Final</option>
-                                            {/* Agregar opciones aquí */}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="cuit">CUIT</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="cuit" placeholder="Ingresa tu CUIT" required value={formData.cuit} onChange={handleChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="email">Email</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="email" placeholder="Ingresa tu email" required type="email" value={formData.email} onChange={handleChange} />
-                                    </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="telefono">Teléfono</label>
-                                    <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="telefono" placeholder="Ingresa tu teléfono" required value={formData.telefono} onChange={handleChange} />
-                                </div>
-                            </fieldset>
-                            <fieldset className="space-y-4 border border-neutral-300 py-4 px-8 rounded-md">
-                                <legend className='font-bold text-lg px-4'>Dirección</legend>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="calle">Calle</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="calle" placeholder="Ingresa tu calle" required value={formData.calle} onChange={handleChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="numero">Número</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="numero" placeholder="Ingresa tu número" required value={formData.numero} onChange={handleChange} />
-                                    </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="piso">Piso</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="piso" placeholder="Ingresa tu piso" required value={formData.piso} onChange={handleChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="depto">Departamento</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="depto" placeholder="Ingresa tu departamento" required value={formData.depto} onChange={handleChange} />
-                                    </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="codigoPostal">Código postal</label>
-                                    <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="codigoPostal" placeholder="Ingresa tu código postal" required value={formData.codigoPostal} onChange={handleChange} />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="localidad">Localidad</label>
-                                    <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="localidad" placeholder="Ingresa tu localidad" required value={formData.localidad} onChange={handleChange} />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="provincia">Provincia</label>
-                                    <select className="bg-white flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="provincia" required value={formData.provincia} onChange={handleChange}>
-                                        <option value="">Selecciona tu provincia</option>
-                                        <option value="Buenos Aires">Buenos Aires</option>
-                                    </select>
-                                </div>
-                            </fieldset>
-                        </div>
-                        <div className="space-y-2">
-                            <div className="flex items-center space-x-2">
-                                <input
-                                    type="checkbox"
-                                    id="another-direction"
-                                    className="peer h-4 w-4 shrink-0 rounded-sm border border-neutral-300 shadow focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                    checked={anotherDirection}
-                                    onChange={() => setAnotherDirection(!anotherDirection)}
-                                />
-                                <label
-                                    htmlFor="another-direction"
-                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                >
-                                    ¿Deseas recibir la factura en una dirección diferente?
-                                </label>
+                                {anotherDirection && (
+                                    <Fieldset legend='Dirección de facturación'>
+                                        <Input label='Calle' id='billing-calle' placeholder='Ingresa tu calle' value={formData.billingAddress.calle} handleChange={handleChange} required={anotherDirection} />
+                                        <Input label='Número' id='billing-numero' placeholder='Ingresa tu número' value={formData.billingAddress.numero} handleChange={handleChange} required={anotherDirection} />
+                                        <Input label='Piso' id='billing-piso' placeholder='Ingresa tu piso' value={formData.billingAddress.piso} handleChange={handleChange} required={anotherDirection} />
+                                        <Input label='Departamento' id='billing-depto' placeholder='Ingresa tu departamento' value={formData.billingAddress.depto} handleChange={handleChange} required={anotherDirection} />
+                                        <Input label='Código postal' id='billing-codigoPostal' placeholder='Ingresa tu código postal' value={formData.billingAddress.codigoPostal} handleChange={handleChange} required={anotherDirection} />
+                                        <Input label='Localidad' id='billing-localidad' placeholder='Ingresa tu localidad' value={formData.billingAddress.localidad} handleChange={handleChange} required={anotherDirection} />
+                                        <Select label='Provincia' id='billing-provincia' value={formData.billingAddress.provincia} handleChange={handleChange} options={provincias} required={anotherDirection} />
+                                    </Fieldset>
+                                )}
                             </div>
-                            {anotherDirection && (
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="billing-calle">Calle</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="billing-calle" placeholder="Ingresa tu calle" required={anotherDirection} value={formData.billingAddress.calle} onChange={handleChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="billing-numero">Número</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="billing-numero" placeholder="Ingresa tu número" required={anotherDirection} value={formData.billingAddress.numero} onChange={handleChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="billing-piso">Piso</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="billing-piso" placeholder="Ingresa tu piso" required={anotherDirection} value={formData.billingAddress.piso} onChange={handleChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="billing-depto">Departamento</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="billing-depto" placeholder="Ingresa tu departamento" required={anotherDirection} value={formData.billingAddress.depto} onChange={handleChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="billing-codigoPostal">Código postal</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="billing-codigoPostal" placeholder="Ingresa tu código postal" required={anotherDirection} value={formData.billingAddress.codigoPostal} onChange={handleChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="billing-localidad">Localidad</label>
-                                        <input className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="billing-localidad" placeholder="Ingresa tu localidad" required={anotherDirection} value={formData.billingAddress.localidad} onChange={handleChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" htmlFor="billing-provincia">Provincia</label>
-                                        <select className="bg-white flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="billing-provincia" required={anotherDirection} value={formData.billingAddress.provincia} onChange={handleChange}>
-                                            <option value="">Selecciona tu provincia</option>
-                                            <option value="Buenos Aires">Buenos Aires</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            )}
                         </div>
-                    </div>
-                    <div className="flex justify-end">
-                        <button
-                            className="bg-black text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-                            type="submit"
-                        >
-                            Crear cuenta
-                        </button>
-                    </div>
-                </>
+                        <div className="flex justify-end">
+                            <button
+                                className="bg-blue-800 text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600/50 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+                                type="submit"
+                            >
+                                Crear cuenta
+                            </button>
+                        </div>
+                    </>
                 )
               : <p className='text-center text-lg'>Registro realizado correctamente</p>
             }
