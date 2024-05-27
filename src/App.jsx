@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Form, Layout, VersionOne, VersionThree, VersionTwo } from './pages'
+import { Form, Layout, LayoutForm, Thanks, VersionOne, VersionThree, VersionTwo } from './pages'
 
 const App = () => {
   return (
@@ -11,7 +11,10 @@ const App = () => {
             <Route path='version02' element={<VersionTwo />}/>
             <Route path='version03' element={<VersionThree />}/>
           </Route>
-          <Route path='/formulario' element={<Form />}/>
+          <Route path='/formulario' element={<LayoutForm />}>
+            <Route index element={<Form />}/>
+            <Route path='gracias' element={<Thanks />}/>
+          </Route>
         </Routes>
       </Router>
     </>
