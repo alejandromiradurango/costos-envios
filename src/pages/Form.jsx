@@ -91,11 +91,8 @@ const Form = () => {
         <main className='bg-cover h-full' style={{ backgroundImage: 'url(http://cotizador.waiverpicks.com.ar/fondo_blur.webp)' }}>
           <header className='bg-blue-800 text-white'>
             <div className="container flex items-center justify-between max-w-5xl py-6">
-              <div className="flex-1">
-                <img className='max-w-40' src="http://cotizador.waiverpicks.com.ar/assets/waiverpicks.logo_trans.png" alt="" />
-              </div>
-              <h1 className='font-bold'>Cotizador online</h1>
-              <p className='flex-1 text-right text-3xl font-black'>you order, <br/> we deliver!</p>
+              <img className='max-w-40' src="http://cotizador.waiverpicks.com.ar/assets/waiverpicks.logo_trans.png" alt="" />
+              <p className='text-3xl font-black'>you order, <br/> we deliver!</p>
             </div>
           </header>
           <div className='p-12'>
