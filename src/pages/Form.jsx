@@ -88,10 +88,21 @@ const Form = () => {
   }
 
   return (
-        <form className="mx-auto max-w-2xl space-y-6 border border-blue-800/40 rounded-md p-6" onSubmit={handleSubmit}>
-            <div className="space-y-2 text-center">
+        <main className='bg-cover h-full' style={{ backgroundImage: 'url(http://cotizador.waiverpicks.com.ar/fondo_blur.webp)' }}>
+          <header className='bg-blue-800 text-white'>
+            <div className="container flex items-center justify-between max-w-5xl py-6">
+              <div className="flex-1">
+                <img className='max-w-40' src="http://cotizador.waiverpicks.com.ar/assets/waiverpicks.logo_trans.png" alt="" />
+              </div>
+              <h1 className='font-bold'>Cotizador online</h1>
+              <p className='flex-1 text-right text-3xl font-black'>you order, <br/> we deliver!</p>
+            </div>
+          </header>
+          <div className='p-12'>
+            <div className="space-y-2 text-center mb-12">
                 <h1 className="text-3xl font-bold text-blue-800">{!formSubmitted ? 'Crea tu cuenta' : '¡Gracias!'}</h1>
             </div>
+          <form className="mx-auto container bg-white space-y-6 border border-blue-800/40 rounded-md p-6" onSubmit={handleSubmit}>
             {!formSubmitted
               ? (
                     <>
@@ -155,6 +166,8 @@ const Form = () => {
               : <p className='text-center text-lg'>Registro realizado correctamente</p>
             }
         </form>
+          </div>
+        </main>
   )
 }
 

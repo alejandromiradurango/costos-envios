@@ -10,8 +10,8 @@ const App = () => {
             <Route path='version01' element={<VersionOne />}/>
             <Route path='version02' element={<VersionTwo />}/>
             <Route path='version03' element={<VersionThree />}/>
-            <Route path='formulario' element={<Form />}/>
           </Route>
+          <Route path='/formulario' element={<Form />}/>
         </Routes>
       </Router>
     </>
